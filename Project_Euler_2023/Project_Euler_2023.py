@@ -11,7 +11,7 @@
 #result = sum_of_multiples(limit)
 #print(f"The sum of multiples of 3 or 5 below {limit} is: {result}")
 
-# Question 2
+# #Question 2
 #def even_fibonacci_sum(limit):
 #    a, b = 1, 2
 #    even_sum = 0
@@ -26,11 +26,11 @@
 
 #limit = 4000000
 
-# Call the function and print the result
+# #Call the function and print the result
 #result = even_fibonacci_sum(limit)
 #print(f"The sum of even-valued terms in the Fibonacci sequence below {limit} is: {result}")
 
-#Question 3
+##Question 3
 #def largest_prime_factor(n):
 #    i = 2
 #    while i * i <= n:
@@ -43,26 +43,21 @@
 #number = 600851475143
 #result = largest_prime_factor(number)
 #print("The largest prime factor of", number, "is:", result)
+##Question 4
 
-MOD = 10**9 + 7
+def is_palindrome(n):
+    # Convert the number to a string and check if it reads the same backward and forward
+    return str(n) == str(n)[::-1]
 
-def calculate_Rk(N, k):
-    dp = [[0] * (k + 1) for _ in range(N + 1)]
+def largest_palindrome_product():
+    largest_palindrome = 0
+    for i in range(100, 1000):
+        for j in range(100, 1000):
+            product = i * j
+            if is_palindrome(product) and product > largest_palindrome:
+                largest_palindrome = product
+    return largest_palindrome
 
-    for i in range(1, N + 1):
-        dp[i][0] = 1
-
-    for i in range(1, N + 1):
-        for j in range(1, k + 1):
-            dp[i][j] = (dp[i - 1][j] * (j + 1) + dp[i - 1][j - 1]) % MOD
-
-    result = 0
-    for i in range(1, k + 1):
-        result = (result + dp[N][i]) % MOD
-
-    return result
-
-N = 10000
-k = 6
-result = calculate_Rk(N, k)
-print(result)
+result = largest_palindrome_product()
+print("The largest palindrome made from the product of two 3-digit numbers is:", result)
+        
